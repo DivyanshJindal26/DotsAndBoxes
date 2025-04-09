@@ -1,4 +1,5 @@
 import React from "react";
+import Play from "./pages/play.jsx";
 import {
   Route,
   RouterProvider,
@@ -13,6 +14,7 @@ import Layout from "./layout/mainLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Play />} />
       
       {/* Add more routes if needed */}
       {/* <Route path="*" element={<NotFoundPage />} /> */}

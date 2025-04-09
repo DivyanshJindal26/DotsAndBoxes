@@ -1,7 +1,8 @@
 import logo from '../../assets/logo.png';
 import { Link } from "react-router-dom";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   FiHome,
   FiSettings,
@@ -35,8 +36,25 @@ const title = [
 ];
 
 export default function NavbarDemo() {
+    const [animatedIndex, setAnimatedIndex] = useState(null);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    const randomIdx = Math.floor(Math.random() * title.length);
+    setAnimatedIndex(randomIdx);
+
+    // Reset after animation duration
+    setTimeout(() => {
+      setAnimatedIndex(null);
+    }, 800); // match transform duration
+  }, 2000); // runs every 2 seconds (tweak as needed)
+
+  return () => clearInterval(interval);
+}, []);
+
     return (
-      <nav className="w-full relative bg-black/100 backdrop-blur-md text-white py-5 px-6 shadow-[0_0_30px_#FFFF33] fixed top-0 z-50 h-[80px]">
+        
+      <nav className="w-full relative bg-black/100 backdrop-blur-md text-white py-5 px-6 fixed top-0 z-50 h-[80px]">
         {/* Left: Title */}
         
         {/* Left: Logo + Title */}
@@ -51,32 +69,36 @@ export default function NavbarDemo() {
 
   {/* Title */}
   <div className="flex space-x-1">
-    {title.map((t, index) => (
-      <span
-        key={index}
-        className={`text-4xl font-bold uppercase tracking-widest ${
-          t.color
-            ? "text-[#FFD700] drop-shadow-[0_0_10px_#FFD700]"
-            : "text-[#FFFF33] drop-shadow-[0_0_8px_#FFFF33]"
-        }`}
-      >
-        <span
-          style={{
-            display: "inline-block",
-            transform: `rotate(${t.rotate}deg) scale(1)`,
-            transition: "transform 0.4s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.transform = `rotate(${t.rotate + 10}deg) scale(1.4)`)
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.transform = `rotate(${t.rotate}deg) scale(1)`)
-          }
-        >
-          {t.char}
-        </span>
-      </span>
-    ))}
+  {title.map((t, index) => (
+  <span
+    key={index}
+    className={`text-4xl font-bold uppercase tracking-widest ${
+      t.color
+        ? "text-[#FFD700] drop-shadow-[0_0_10px_#FFD700]"
+        : "text-[#FFFF33] drop-shadow-[0_0_8px_#FFFF33]"
+    }`}
+  >
+    <span
+      style={{
+        display: "inline-block",
+        transform:
+          animatedIndex === index
+            ? `rotate(${t.rotate + 10}deg) scale(1.4)`
+            : `rotate(${t.rotate}deg) scale(1)`,
+        transition: "transform 0.4s ease-in-out",
+      }}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.transform = `rotate(${t.rotate + 10}deg) scale(1.4)`)
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.transform = `rotate(${t.rotate}deg) scale(1)`)
+      }
+    >
+      {t.char}
+    </span>
+  </span>
+))}
+
   </div>
 </div>
 
@@ -88,10 +110,10 @@ export default function NavbarDemo() {
         to={item.href} // ✅ changed from href to to
         className="group flex flex-col items-center gap-y-1 transition duration-300"
       >
-        <div className="text-3xl text-[#FFFF33] group-hover:text-[#FFD700] transition-transform duration-500 ease-out transform group-hover:scale-125 group-hover:-translate-y-1 group-hover:rotate-6 drop-shadow-[0_0_10px_#f59e0b]">
+        <div className="text-3xl text-[#FFD700] group-hover:text-[#FFFF33] transition-transform duration-500 ease-out transform group-hover:scale-125 group-hover:-translate-y-1 group-hover:rotate-6 drop-shadow-[0_0_10px_#f59e0b]">
           {item.icon}
         </div>
-        <span className="relative text-sm font-medium tracking-wide text-[#FFFF33] group-hover:text-[#FFD700] transition-colors duration-300 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#f59e0b] after:transition-all after:duration-500 group-hover:after:w-full group-hover:after:left-0">
+        <span className="relative text-sm font-medium tracking-wide text-[#FFD700] group-hover:text-[#FFFF33] transition-colors duration-300 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#f59e0b] after:transition-all after:duration-500 group-hover:after:w-full group-hover:after:left-0">
           {item.label}
         </span>
       </Link>
@@ -106,11 +128,10 @@ export default function NavbarDemo() {
             alt="User Avatar"
             className="w-14 h-14 rounded-full border-2 border-[#FFD700] hover:scale-110 transition-transform duration-300 shadow-lg bg-white p-1"
           />
-        <button className="relative overflow-hidden bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 text-black font-semibold px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(255,255,0,0.3)] hover:scale-105 transition-all duration-300 group">
-  <span className="relative z-10">Login</span>
-  <span className="absolute inset-0 bg-white/10 blur-md opacity-0 group-hover:opacity-100 transition-all duration-500"></span>
-  <span className="absolute inset-0 border border-yellow-300 rounded-xl animate-pulse opacity-20 group-hover:opacity-50"></span>
+      <button className="relative bg-black text-yellow-300 font-semibold px-6 py-2  border-yellow-300 transition-all duration-300 hover:bg-yellow-300 hover:text-black hover:scale-105 hover:shadow-[0_0_10px_#FFD700]">
+  Login
 </button>
+
 
 
         </div>
