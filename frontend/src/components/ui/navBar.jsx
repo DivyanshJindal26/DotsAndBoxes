@@ -54,7 +54,8 @@ useEffect(() => {
 
     return (
         
-      <nav className="w-full relative bg-black/100 backdrop-blur-md text-white py-5 px-6 fixed top-0 z-50 h-[80px]">
+        <nav className="w-full relative bg-transparent backdrop-blur-md text-white py-5 px-6 fixed top-0 z-50 h-[80px]">
+
         {/* Left: Title */}
         
         {/* Left: Logo + Title */}

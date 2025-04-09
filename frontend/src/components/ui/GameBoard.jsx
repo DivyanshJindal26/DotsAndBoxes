@@ -52,7 +52,7 @@ const DotsAndBoxes = ({ rows = 3, cols = 3 }) => {
   };
 
   return (
-    <div className="inline-block p-4 rounded-xl bg-black text-white">
+    <div className="inline-block p-4 rounded-xl  text-white">
       <style>{`
         @keyframes line-horizontal-rotate {
           0% {
@@ -118,7 +118,19 @@ const DotsAndBoxes = ({ rows = 3, cols = 3 }) => {
               );
             }
 
-            return <div key={`empty-${rowIdx}-${colIdx}`} style={{ width: 48, height: 48 }} />;
+            return (
+              <div
+                key={`empty-${rowIdx}-${colIdx}`}
+                style={{
+                  width: 48,
+                  height: 48,
+                  backgroundColor: "transparent",
+                  pointerEvents: "none", // so it doesn’t block clicks
+                  userSelect: "none",    // prevent accidental text selection
+                }}
+              />
+            );
+            
           })}
         </div>
         
