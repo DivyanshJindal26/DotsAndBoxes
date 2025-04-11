@@ -13,7 +13,7 @@ import Layout from "./layout/mainLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="/" element={<Play />} />
+      <Route path="/play" element={<Play />} />
 
       {/* Add more routes if needed */}
       <Route path="*" element={<NotFoundPage />} />
