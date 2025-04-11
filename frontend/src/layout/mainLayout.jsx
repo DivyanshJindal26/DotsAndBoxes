@@ -1,6 +1,6 @@
 import React from "react";
 import NavbarDemo from "../components/ui/navBar.jsx";
-import GameBoard from "../components/ui/GameBoard.jsx";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -8,12 +8,9 @@ const Layout = () => {
       {/* Top Navigation Bar */}
       <NavbarDemo />
 
-      {/* Centered GameBoard */}
-      <main className="pt-[80px] flex justify-center items-center min-h-[calc(100vh-80px)]">
-      <div className="scale-180 sm:scale-150">
-  <GameBoard rows={5} cols={5} />
-</div>
-
+      {/* Main Content (Outlet renders child routes here) */}
+      <main className="pt-[100px] flex justify-center items-start min-h-[calc(100vh-80px)]">
+        <Outlet />
       </main>
     </div>
   );
