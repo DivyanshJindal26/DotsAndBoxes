@@ -9,9 +9,10 @@ const Layout = () => {
       <NavbarDemo />
 
       {/* Main Content (Outlet renders child routes here) */}
-      <main className="pt-[100px] flex justify-center items-start min-h-[calc(100vh-80px)]">
-        <Outlet />
-      </main>
+      <main className="pt-[80px] flex justify-center items-start min-h-[calc(100vh-80px)]">
+  <Outlet />
+</main>
+
     </div>
   );
 };
