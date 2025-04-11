@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const Dot = ({ size = 16 }) => (
+const Dot = ({ size = 24 }) => (
   <div
     className="rounded-full bg-[#FFFF33] shadow-[0_0_6px_#FFFF33] transition-transform duration-300 hover:scale-110"
     style={{ width: size, height: size }}
   ></div>
 );
+
 
 
 
@@ -36,13 +37,14 @@ const Line = ({ orientation, onClick, isActive, color }) => {
             ? `scale-100 ${bgColor} ${animationClass}`
             : "bg-gray-900 hover:bg-yellow-300 hover:scale-105"
         }`}
-      style={{
-        width: isHorizontal ? 48 : 8,
-        height: isHorizontal ? 8 : 48,
-        margin: isHorizontal ? undefined : "0 4px",
-        borderRadius: 4,
-        transform: isActive ? initialTransform : undefined,
-      }}
+        style={{
+          width: isHorizontal ? 72 : 12,
+          height: isHorizontal ? 12 : 72,
+          margin: isHorizontal ? undefined : "0 6px",
+          borderRadius: 8,
+          transform: isActive ? initialTransform : undefined,
+        }}
+        
     ></div>
   );
 };
@@ -241,8 +243,8 @@ const [computerScore, setComputerScore] = useState(0);
                   className={`transition-all duration-700 ease-in-out flex items-center justify-center
                     ${boxColor ? "scale-100 opacity-90" : "scale-75 opacity-0"}`}
                   style={{
-                    width: 48,
-                    height: 48,
+                    width: 72,
+                    height: 72,
                     borderRadius: 12,
 backgroundColor:
   boxColor === "yellow"
