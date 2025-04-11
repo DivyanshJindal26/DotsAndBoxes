@@ -1,24 +1,30 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int t;
+    long long int t;
     cin>>t;
     while(t--){
-        int n;
-        cin>>n;
-        string s ;
-        cin>>s;
-        int count;
-        count=0;
-        // unordered_set<string> mySet;
-        unordered_set<char> alpha;
-        for(int i =0;i<s.length();i++){
-            if (alpha.find(s[i])==alpha.end()){
-                count+=s.length()-i;
-                alpha.insert(s[i]);
-            }
+      long long  int n ;
+       cin>>n;
+        vector<long long int> vec(n);
+        for(int i =0;i<n;i++){
+            cin>>vec[i];
         }
-        cout<<count<<endl;
+        long long int i;
+        
+        for(i=2;i<=10e18;i*=2){
+            unordered_set<long long int> mySet;
+            for(auto a : vec){
+                
+                mySet.insert(a%i);
+                
+                if (mySet.size()>2) {
+                    break;
+                } 
+            }
+            if (mySet.size()==2) break;
+        }
+        cout<<i<<endl;
     }
 }
 

@@ -20,7 +20,7 @@ const Play = () => {
       {/* GameBoard */}
       <div className="scale-180 sm:scale-150">
         <GameBoard
-          rows={5}
+          rows={4}
           cols={5}
           onScoreUpdate={(player, cpu) => {
             setPlayerScore(player);
